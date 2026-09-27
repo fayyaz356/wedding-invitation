@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#073f36">
+  <title>Aamir Raza Qureshi & Sania Qureshi — Nikah & Walima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #073f36;
+      color: #173d37;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    .section-dark {
+      position: relative;
+      background: #073f36;
+      color: #f6f1e3;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 76px 76px;
+    }
+    .cream {
+      position: relative;
+      background: #f3eddd;
+      color: #173d37;
+      background-image: linear-gradient(45deg, transparent 46%, rgba(199,164,90,.055) 47%, rgba(199,164,90,.055) 53%, transparent 54%),
+                        linear-gradient(-45deg, transparent 46%, rgba(199,164,90,.045) 47%, rgba(199,164,90,.045) 53%, transparent 54%);
+      background-size: 76px 76px;
+    }
+    .sage {
+      position: relative;
+      background: #78928b;
+      color: #f8f2e4;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,.13), transparent 22%), radial-gradient(circle at 90% 80%, rgba(255,255,255,.1), transparent 24%);
+    }
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #073f36;
+      color: #f3eddd;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 8px;
+      transition: opacity .8s, visibility .8s;
+    }
+    .preloader.hide { opacity: 0; visibility: hidden; }
+    .loader-flower { font-size: 42px; color: #c7a45a; animation: pulse 1.3s infinite; }
+    .preloader p { letter-spacing: 3px; text-transform: uppercase; font-size: 11px; }
+
+    .topbar {
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0;
+      height: 46px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(7,63,54,.85);
+      backdrop-filter: blur(12px);
+      color: #f5f0e2;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+    .music-mini { border: 0; background: transparent; color: #c7a45a; font-size: 20px; cursor: pointer; }
+
+    .hero { min-height: 100svh; display: grid; place-items: center; overflow: hidden; position: relative; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1400&q=85") center/cover no-repeat;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(30,20,12,.55), rgba(24,20,14,.68) 55%, rgba(7,63,54,.72));
+    }
+    .gold-frame, .inner-frame {
+      position: absolute;
+      inset: 6%;
+      border: 1px solid rgba(199,164,90,.7);
+      pointer-events: none;
+    }
+    .gold-frame:after, .inner-frame:after {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(199,164,90,.35);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(92%, 600px);
+      text-align: center;
+      padding: 80px 20px 120px;
+    }
+    .arabic { font-family: "Noto Naskh Arabic", serif; }
+    .hero-arabic { font-size: 27px; margin-bottom: 12px; }
+    .eyebrow { font-size: 11px; letter-spacing: 4px; line-height: 1.9; }
+    .light { color: #f8f2e4; }
+    .gold { color: #bd9951; }
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 28px auto;
+      width: min(80%, 400px);
+      color: #e2c26d;
+    }
+    .ornament span { height: 1px; flex: 1; background: rgba(226,194,109,.65); }
+    .ornament b { font-size: 23px; font-weight: 400; }
+    .couple-name {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(52px, 14vw, 90px);
+      font-weight: 400;
+      line-height: .95;
+      margin: 16px 0 10px;
+      color: #fff9ed;
+      text-shadow: 0 4px 18px rgba(0,0,0,.25);
+    }
+    .couple-name small { font-family: "Cormorant Garamond", serif; font-size: .38em; vertical-align: middle; }
+    .event-title { font: 500 20px "Cormorant Garamond", serif; letter-spacing: 7px; margin: 20px 0; color: #e9d8ad; }
+    .date-line, .place-line { font-weight: 500; letter-spacing: 4px; }
+    .date-line i { font-style: normal; color: #c7a45a; margin: 0 5px; }
+    .scroll-cue {
+      position: absolute;
+      bottom: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #f5f0e2;
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 5px;
+    }
+    .scroll-cue span { display: block; font-size: 35px; line-height: 20px; animation: bounce 1.5s infinite; }
+    .floral {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 90px;
+      pointer-events: none;
+      background: url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=80") center/cover;
+      mix-blend-mode: screen;
+      opacity: .72;
+      filter: saturate(.65) brightness(1.2);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 80%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, black 25%, black 80%, transparent);
+    }
+    .floral-bottom { bottom: -20px; }
+    .hero-floral { height: 130px; }
+
+    .verse { min-height: 92svh; padding: 100px 24px 120px; display: grid; place-items: center; position: relative; }
+    .inner-frame {
+      inset: 6% 7%;
+      position: relative;
+      padding: 60px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .verse-arabic { font-size: clamp(28px, 6vw, 42px); line-height: 1.7; color: #e5c775; max-width: 850px; }
+    .verse-text { font-size: 18px; line-height: 1.9; max-width: 680px; color: #d8ddd6; margin: 35px auto; }
+    .verse-ref { color: #d4b35e; letter-spacing: 4px; font-size: 11px; font-weight: 600; }
+
+    .section-heading { text-align: center; padding: 100px 24px 45px; }
+    .section-heading h2 { font: 500 clamp(38px, 10vw, 62px)/1.05 "Cormorant Garamond", serif; letter-spacing: 5px; margin: 12px 0; }
+    .gold-orn { margin: 22px auto; }
+
+    .scratch-section { min-height: 100svh; padding-bottom: 90px; }
+    .scratch-card {
+      position: relative;
+      width: min(88%, 620px);
+      height: 360px;
+      margin: auto;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(20,35,30,.14);
+      background: #eee3ca;
+      border-radius: 4px;
+    }
+    .scratch-art {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 80%, #fff9ef 0 25%, transparent 26%), linear-gradient(#f3ead7, #efe2c8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .arch {
+      width: 72%;
+      height: 78%;
+      border: 10px double #bb8b35;
+      border-radius: 150px 150px 0 0;
+      position: relative;
+      background: rgba(255,255,255,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .arch-copy span { display: block; color: #bd9951; letter-spacing: 4px; font-size: 10px; }
+    .arch-copy strong { display: block; font: 600 25px "Cormorant Garamond", serif; letter-spacing: 3px; margin: 10px 0; }
+    .arch-copy em { font: 24px "Great Vibes", cursive; color: #9d7a3b; }
+    .curtain {
+      position: absolute;
+      top: 0;
+      width: 26%;
+      height: 80%;
+      background: linear-gradient(90deg, #fff, #ddc9aa, #fff);
+      z-index: 2;
+      border-bottom-right-radius: 80%;
+      box-shadow: inset -8px 0 15px rgba(120,80,30,.12);
+    }
+    .curtain.left { left: 0; }
+    .curtain.right { right: 0; transform: scaleX(-1); }
+    .candles { position: absolute; bottom: 18px; color: #b38a45; font-size: 22px; }
+    .tiny-flower { position: absolute; color: #c99652; }
+    .f1 { top: 8px; left: 18px; }
+    .f2 { top: 8px; right: 18px; }
+    .scratch-card canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .scratch-label {
+      position: absolute;
+      z-index: 6;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #fff;
+      background: rgba(10,40,34,.72);
+      padding: 7px 14px;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .invitation { padding-bottom: 60px; }
+    .invitation-copy { max-width: 680px; margin: auto; padding: 0 30px; text-align: center; }
+    .invitation-copy > p { font-size: 18px; line-height: 2; color: #56665f; }
+    .script-sign { font: 38px "Great Vibes", cursive; color: #b99043; margin: 40px 0 25px; }
+    .couple-small { letter-spacing: 6px; font-size: 11px; color: #71827a; }
+    .couple-small span { color: #bd9951; margin: 0 12px; }
+    .floral-divider { position: relative; height: 100px; bottom: auto; margin-top: 25px; }
+
+    .parents { padding-bottom: 70px; }
+    .parents-grid { width: min(92%, 760px); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .parent-card {
+      text-align: center;
+      background: rgba(255,250,240,.72);
+      border: 1px solid rgba(189,153,81,.55);
+      padding: 34px 18px;
+      box-shadow: 0 10px 30px rgba(38,51,40,.07);
+    }
+    .parent-label { font-size: 10px; letter-spacing: 4px; color: #b58d45; }
+    .parent-card h3 { font: 500 31px "Cormorant Garamond", serif; margin: 12px 0; color: #173d37; }
+    .parent-card p:not(.parent-label) { font-size: 14px; color: #728078; }
+    .parent-card strong { font: 500 18px/1.7 "Cormorant Garamond", serif; color: #4d615a; }
+
+    .blessing { min-height: 65svh; display: grid; place-items: center; padding: 90px 20px; position: relative; }
+    .blessing-card {
+      width: min(88%, 700px);
+      text-align: center;
+      border: 1px solid rgba(241,226,181,.55);
+      padding: 80px 24px;
+      background: rgba(35,67,61,.18);
+    }
+    .blessing-arabic { font-size: 38px; color: #ead18a; }
+    .blessing-card p { letter-spacing: 5px; font-size: 12px; margin-top: 24px; }
+
+    .celebrate { min-height: 35svh; display: grid; place-items: center; text-align: center; }
+
+    .nikah, .walima { min-height: 90svh; display: grid; place-items: center; padding: 80px 20px; position: relative; }
+    .walima-frame {
+      width: min(88%, 680px);
+      min-height: 600px;
+      border: 1px solid rgba(199,164,90,.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+      position: relative;
+    }
+    .walima-frame:after { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(199,164,90,.3); pointer-events: none; }
+    .lantern { font-size: 50px; color: #d1ae5d; }
+    .mini-arabic { font-size: 35px; color: #d5b461; margin: 15px; }
+    .walima-title { font: 500 48px "Cormorant Garamond", serif; letter-spacing: 7px; margin: 8px; }
+    .vertical-line { height: 60px; width: 1px; background: #b99348; margin: 25px; }
+    .event-date { font-size: 19px; }
+    .event-time { font: 500 26px "Cormorant Garamond", serif; color: #c7a45a; letter-spacing: 3px; }
+    .event-venue { font-size: 16px; color: #cdd6d0; }
+    .event-map { margin-top: 18px; }
+
+    .countdown-section { min-height: 60svh; }
+    .countdown { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 20px 15px 90px; }
+    .countdown div { text-align: center; min-width: 64px; }
+    .countdown strong { display: block; font: 500 clamp(38px, 10vw, 62px) "Cormorant Garamond", serif; }
+    .countdown span { display: block; font-size: 8px; letter-spacing: 2px; color: #8a7450; }
+    .countdown i { font: 28px "Cormorant Garamond", serif; color: #bd9951; }
+
+    .venue-section { padding-bottom: 100px; }
+    .venue-card {
+      width: min(90%, 620px);
+      margin: auto;
+      background: #fffaf0;
+      border: 1px solid #d5bf8d;
+      padding: 12px;
+      box-shadow: 0 15px 45px rgba(38,51,40,.12);
+    }
+    .venue-image {
+      height: 350px;
+      background: url("https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1000&q=85") center/cover no-repeat;
+      clip-path: ellipse(78% 65% at 50% 42%);
+    }
+    .venue-info { text-align: center; padding: 15px 15px 30px; }
+    .venue-info h3 { font: 500 33px/1.05 "Cormorant Garamond", serif; letter-spacing: 5px; }
+    .venue-info p { font-size: 15px; line-height: 1.8; color: #64736d; }
+    .gold-button {
+      display: inline-block;
+      border: 1px solid #b9954b;
+      background: #b9954b;
+      color: #fffdf4;
+      text-decoration: none;
+      padding: 13px 22px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .gold-button:hover { background: #9d7b38; }
+
+    .rsvp { padding: 90px 20px 120px; text-align: center; }
+    .rsvp-form { max-width: 520px; margin: auto; display: grid; gap: 12px; }
+    .rsvp-form input, .rsvp-form select {
+      width: 100%;
+      padding: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(199,164,90,.5);
+      color: #fff;
+      font: 300 15px "DM Sans", sans-serif;
+    }
+    .rsvp-form select option { color: #173d37; }
+    .form-message { min-height: 20px; color: #e5cf8d; font-size: 13px; margin: 6px 0; }
+    .rsvp-note { font-size: 11px; color: #b7c4be; letter-spacing: .5px; }
+
+    .footer { text-align: center; padding: 70px 20px 100px; border-top: 1px solid rgba(199,164,90,.25); }
+    .footer .arabic { font-size: 30px; color: #d7b866; }
+    .footer p { letter-spacing: 5px; }
+    .footer small { color: #aebcb5; }
+
+    .floating-controls {
+      position: fixed;
+      z-index: 1100;
+      left: 0; right: 0; bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+    .pill-control, .round-control {
+      pointer-events: auto;
+      border: 0;
+      background: #fffaf0;
+      color: #345a50;
+      box-shadow: 0 7px 25px rgba(0,0,0,.15);
+      cursor: pointer;
+    }
+    .pill-control { border-radius: 40px; padding: 14px 20px; font: 500 13px "DM Sans"; }
+    .round-control { width: 52px; height: 52px; border-radius: 50%; font-weight: 700; }
+    .round-control span { letter-spacing: 2px; color: #6e978b; display: inline-block; }
+    .round-control.playing span { animation: bars .75s infinite alternate; }
+
+    .reveal { opacity: 0; transform: translateY(25px); transition: opacity .9s ease, transform .9s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes pulse { 50% { transform: scale(1.15); opacity: .7; } }
+    @keyframes bars { to { letter-spacing: 5px; transform: scaleY(1.3); } }
+
+    @media (max-width: 620px) {
+      .parents-grid { grid-template-columns: 1fr; }
+      .parent-card h3 { font-size: 28px; }
+    }
+    @media (max-width: 480px) {
+      .hero-content { padding-top: 90px; }
+      .hero-arabic { font-size: 23px; }
+      .eyebrow { font-size: 9px; letter-spacing: 3px; }
+      .couple-name { font-size: 58px; }
+      .event-title { font-size: 16px; letter-spacing: 5px; }
+      .inner-frame { padding: 45px 20px; }
+      .verse-arabic { font-size: 25px; }
+      .verse-text { font-size: 16px; }
+      .scratch-card { height: 310px; }
+      .arch { width: 67%; height: 74%; }
+      .arch-copy strong { font-size: 19px; }
+      .arch-copy em { font-size: 19px; }
+      .curtain { width: 25%; }
+      .blessing-arabic { font-size: 29px; }
+      .walima-frame { min-height: 540px; }
+      .countdown { gap: 5px; }
+      .countdown div { min-width: 54px; }
+      .countdown i { font-size: 22px; }
+      .venue-image { height: 260px; }
+      .floating-controls { padding: 0 14px; }
+      .topbar { height: 42px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { transition: none; }
+      .scroll-cue span { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader Screen -->
+  <div id="preloader" class="preloader">
+    <div class="loader-flower">✦</div>
+    <p>With love &amp; duas</p>
+  </div>
+
+  <!-- Sticky Top Navigation -->
+  <header class="topbar">
+    <span>Aamir Raza Qureshi &amp; Sania Qureshi</span>
+    <button id="openMusic" class="music-mini" aria-label="Play music">♫</button>
+  </header>
+
+  <main>
+    <!-- Hero Banner -->
+    <section class="hero section-dark" id="home">
+      <div class="hero-bg"></div>
+      <div class="overlay"></div>
+      <div class="gold-frame"></div>
+      <div class="hero-content reveal">
+        <div class="arabic hero-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        <div class="eyebrow light">IN THE NAME OF ALLAH, THE MOST<br>GRACIOUS, THE MOST MERCIFUL</div>
+        <div class="ornament"><span></span><b>✦</b><span></span></div>
+        <p class="eyebrow light">WE INVITE YOU TO CELEBRATE OUR</p>
+        <h1 class="couple-name">Aamir Raza Qureshi <small>&amp;</small> Sania Qureshi</h1>
+        <h2 class="event-title">NIKAH &amp; WALIMA</h2>
+        <p class="date-line">SATURDAY <i>•</i> OCTOBER 10, 2026</p>
+        <p class="place-line">INDORE</p>
+        <a href="#verse" class="scroll-cue">SCROLL <span>⌄</span></a>
+      </div>
+      <div class="floral floral-bottom hero-floral"></div>
+    </section>
+
+    <!-- Quranic Verse -->
+    <section class="verse section-dark" id="verse">
+      <div class="inner-frame reveal">
+        <div class="arabic verse-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
+        <p class="verse-text">And among His signs is that He created for you spouses from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy.</p>
+        <div class="verse-ref">SURAH AR-RUM · 30:21</div>
+      </div>
+      <div class="floral floral-bottom"></div>
+    </section>
+
+    <!-- Scratch-to-Reveal Card -->
+    <section class="cream scratch-section" id="surprise">
+      <div class="section-heading reveal">
+        <p class="eyebrow gold">A LITTLE SURPRISE</p>
+        <h2>SCRATCH &amp; REVEAL</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+
+      <div class="scratch-card reveal">
+        <div class="scratch-art">
+          <div class="curtain left"></div>
+          <div class="curtain right"></div>
+          <div class="arch">
+            <div class="tiny-flower f1">✿</div><div class="tiny-flower f2">✿</div>
+            <div class="arch-copy">
+              <span>SAVE THE DATE</span>
+              <strong>OCTOBER 10, 2026</strong>
+              <em>We cannot wait<br>to see you there</em>
+            </div>
+          </div>
+          <div class="candles">♜ &nbsp; ♜ &nbsp; ♜</div>
+        </div>
+        <canvas id="scratchCanvas" aria-label="Scratch to reveal the save-the-date message"></canvas>
+        <div class="scratch-label">SCRATCH HERE</div>
+      </div>
+    </section>
+
+    <!-- Formal Invitation -->
+    <section class="cream invitation" id="invitation">
+      <div class="section-heading reveal">
+        <p class="eyebrow gold">CORDIALLY INVITE YOU</p>
+        <h2>TO WITNESS OUR WEDDING</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+      <div class="invitation-copy reveal">
+        <p>Your presence is respectfully requested at the celebration of our marriage</p>
+        <div class="script-sign">Aamir Raza &amp; Sania</div>
+        <p>Saturday, October 10, 2026</p>
+        <p class="couple-small">Indore <span>•</span> India</p>
+        <div class="floral-divider"></div>
+      </div>
+    </section>
+
+    <!-- Parents Section -->
+    <section class="cream parents" id="parents">
+      <div class="section-heading reveal">
+        <h2>FAMILY</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+      <div class="parents-grid reveal">
+        <div class="parent-card">
+          <p class="parent-label">PARENTS OF THE GROOM</p>
+          <h3>Aamir Ali Qureshi</h3>
+          <p>&amp;</p>
+          <h3>Fatima Qureshi</h3>
+        </div>
+        <div class="parent-card">
+          <p class="parent-label">PARENTS OF THE BRIDE</p>
+          <h3>Mohammad Aslam</h3>
+          <p>&amp;</p>
+          <h3>Nasreen Aslam</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blessing Section -->
+    <section class="section-dark blessing" id="blessing">
+      <div class="blessing-card reveal">
+        <div class="arabic blessing-arabic">الحمد لله</div>
+        <p>ALHAMDULILLAH</p>
+        <p style="margin-top: 20px; font-size: 14px;">We are grateful to Allah for blessing us with this beautiful journey together.</p>
+      </div>
+    </section>
+
+    <!-- Celebrate Together -->
+    <section class="cream celebrate" id="celebrate">
+      <div class="reveal">
+        <h2 style="font: 500 clamp(38px, 10vw, 62px)/1.05 'Cormorant Garamond', serif; letter-spacing: 5px; margin: 0;">JOIN US IN CELEBRATION</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+    </section>
+
+    <!-- Nikah Event -->
+    <section class="nikah section-dark" id="nikah">
+      <div class="walima-frame reveal">
+        <div class="lantern">💫</div>
+        <div class="arabic mini-arabic">نِكَاح</div>
+        <h2 class="walima-title">NIKAH</h2>
+        <div class="vertical-line"></div>
+        <p class="event-date">Saturday, October 10, 2026</p>
+        <p class="event-time">6:00 PM</p>
+        <p class="event-venue">INDORE</p>
+      </div>
+    </section>
+
+    <!-- Walima Event -->
+    <section class="walima section-dark" id="walima">
+      <div class="walima-frame reveal">
+        <div class="lantern">✨</div>
+        <div class="arabic mini-arabic">وليمة</div>
+        <h2 class="walima-title">WALIMA</h2>
+        <div class="vertical-line"></div>
+        <p class="event-date">Sunday, October 11, 2026</p>
+        <p class="event-time">6:00 PM</p>
+        <p class="event-venue">INDORE</p>
+      </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="section-dark countdown-section" id="countdown">
+      <div class="section-heading reveal">
+        <h2>DAYS UNTIL WE SAY YES</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+      <div class="countdown reveal" id="countdownTimer">
+        <div><strong id="days">0</strong><span>DAYS</span></div>
+        <i>:</i>
+        <div><strong id="hours">0</strong><span>HOURS</span></div>
+        <i>:</i>
+        <div><strong id="minutes">0</strong><span>MINUTES</span></div>
+        <i>:</i>
+        <div><strong id="seconds">0</strong><span>SECONDS</span></div>
+      </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="cream venue-section" id="venue">
+      <div class="section-heading reveal">
+        <h2>VENUE</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+      <div class="venue-card reveal">
+        <div class="venue-image"></div>
+        <div class="venue-info">
+          <h3>Grand Indore</h3>
+          <p>A stunning venue in the heart of Indore, perfectly crafted for your celebration.</p>
+          <a href="#" class="gold-button">GET DIRECTIONS</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="section-dark rsvp" id="rsvp">
+      <div class="section-heading reveal">
+        <h2>RSVP</h2>
+        <div class="ornament gold-orn"><span></span><b>✦</b><span></span></div>
+      </div>
+      <form class="rsvp-form reveal" id="rsvpForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <select required>
+          <option value="">Select Event</option>
+          <option value="nikah">Nikah Only</option>
+          <option value="walima">Walima Only</option>
+          <option value="both">Both Events</option>
+        </select>
+        <select required>
+          <option value="">Number of Guests</option>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4+ Guests</option>
+        </select>
+        <button type="submit" class="gold-button">CONFIRM ATTENDANCE</button>
+      </form>
+      <div class="form-message" id="formMessage"></div>
+      <p class="rsvp-note">Please respond by September 30, 2026</p>
+    </section>
+
+    <!-- Footer -->
+    <section class="section-dark footer" id="footer">
+      <div class="arabic">بارك الله</div>
+      <p>MAY ALLAH BLESS US</p>
+      <p style="margin-top: 30px; font-size: 13px;">With love and gratitude,<br>Aamir Raza &amp; Sania Qureshi</p>
+      <small style="display: block; margin-top: 40px;">© 2026 · All rights reserved</small>
+    </section>
+  </main>
+
+  <!-- Floating Controls -->
+  <div class="floating-controls">
+    <button class="pill-control" id="shareBtn">SHARE</button>
+    <button class="round-control playing" id="musicBtn"><span>♫ ♪ ♫</span></button>
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('preloader').classList.add('hide'), 800);
+    });
+
+    // Intersection Observer for Reveal Animation
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Countdown Timer
+    function updateCountdown() {
+      const target = new Date('2026-10-10T00:00:00').getTime();
+      const now = new Date().getTime();
+      const distance = target - now;
+      
+      if (distance < 0) {
+        document.getElementById('countdownTimer').innerHTML = '<p style="color: #e5cf8d;">The celebration has begun! 🎉</p>';
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Scratch Canvas
+    const canvas = document.getElementById('scratchCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      
+      ctx.fillStyle = '#8b8470';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = 'destination-out';
+      
+      let isDrawing = false;
+      const eraserSize = 45;
+      
+      const scratch = (e) => {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left || e.touches[0].clientX - rect.left;
+        const y = e.clientY - rect.top || e.touches[0].clientY - rect.top;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, eraserSize, 0, Math.PI * 2);
+        ctx.fill();
+      };
+      
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mousemove', scratch);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('touchstart', () => isDrawing = true);
+      canvas.addEventListener('touchmove', scratch);
+      canvas.addEventListener('touchend', () => isDrawing = false);
+    }
+
+    // RSVP Form
+    document.getElementById('rsvpForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('formMessage').textContent = '✓ Thank you! Your RSVP has been received with love.';
+      document.getElementById('formMessage').style.color = '#a8d5ba';
+      setTimeout(() => document.getElementById('rsvpForm').reset(), 1500);
+    });
+
+    // Music Toggle
+    let isPlaying = false;
+    const musicBtn = document.getElementById('musicBtn');
+    const openMusicBtn = document.getElementById('openMusic');
+    
+    const toggleMusic = () => {
+      isPlaying = !isPlaying;
+      musicBtn.classList.toggle('playing', isPlaying);
+      openMusicBtn.textContent = isPlaying ? '⏸' : '♫';
+    };
+    
+    musicBtn?.addEventListener('click', toggleMusic);
+    openMusicBtn?.addEventListener('click', toggleMusic);
+
+    // Share Button
+    document.getElementById('shareBtn')?.addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Aamir Raza & Sania - Wedding Invitation',
+          text: 'You are invited to our Nikah & Walima celebration!',
+          url: window.location.href
+        });
+      } else {
+        alert('Share: ' + window.location.href);
+      }
+    });
+  </script>
+</body>
+</html>
